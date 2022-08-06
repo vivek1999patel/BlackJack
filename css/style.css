@@ -89,4 +89,33 @@ h3 {
     width: 82%;
     border: 2px solid black;
     margin: 7px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+label {
+    font-size: 20px;
+    color: brown;
+    margin: 15px 10px 15px 70px;
+}
+
+#wins {
+    height: 5vh;
+    width: 15vh;
+    border: 2px solid black;
+    margin-left: 30px;
+}
+
+#losses {
+    height: 5vh;
+    width: 15vh;
+    border: 2px solid black;
+    margin-left: 30px;
+}
+
+#ties {
+    height: 5vh;
+    width: 15vh;
+    border: 2px solid black;
+    margin-left: 30px;
 }
