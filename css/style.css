@@ -37,12 +37,118 @@ h3 {
     margin: 10px;
 }
 
+/* Div id:table */
 #table {
     height: 67vh;
     background-color: burlywood;
     width: 80%;
     border: 2px solid black;
     margin: 10px;
+}
+
+#div1 {
+    height: 28vh;
+    background-color: aliceblue;
+    border: 2px solid red;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#dealer_hand {
+    width: 60vw;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.dealer_cards {
+    height: 12vh;
+    width: 8vw;
+    border: 1px solid black;
+    margin: 1px;
+}
+
+#dealer_point {
+    width: 20vw;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#dealer_score {
+    height: 10vh;
+    width: 110px;
+    border: 2px solid red;
+    border-radius: 50%;
+}
+
+#div2 {
+    height: 9vh;
+    background-color: aliceblue;
+    border: 2px solid red;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.stand_hit {
+    height: 4vh;
+    width: 10vw;
+    font-size: 20px;
+}
+
+#div3 {
+    height: 28vh;
+    background-color: aliceblue;
+    border: 2px solid red;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#player_hand {
+    width: 60vw;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.player_cards {
+    height: 12vh;
+    width: 8vw;
+    border: 1px solid black;
+    margin: 1px;
+}
+
+#player_point {
+    width: 20vw;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#player_score {
+    height: 10vh;
+    width: 110px;
+    border: 2px solid red;
+    border-radius: 50%;
+}
+
+/* Label for the points */
+.points {
+    margin: 0;
+    text-align: center;
 }
 
 /* Secondary board */
@@ -90,7 +196,7 @@ h3 {
     border: 2px solid black;
     margin: 7px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 33% 33% 33%;
 }
 
 label {
