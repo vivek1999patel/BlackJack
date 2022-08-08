@@ -1,37 +1,9 @@
 /*----- constants -----*/
-const cards = {
-    'A' : 'spades', 'A' : 'diamonds', 'A' : 'clubs', 'A' : 'hearts',
-    '1' : 'spades', '1' : 'diamonds', '1' : 'clubs', '1' : 'hearts',
-    '2' : 'spades', '2' : 'diamonds', '2' : 'clubs', '2' : 'hearts',
-    '3' : 'spades', '3' : 'diamonds', '3' : 'clubs', '3' : 'hearts',
-    '4' : 'spades', '4' : 'diamonds', '4' : 'clubs', '4' : 'hearts',
-    '5' : 'spades', '5' : 'diamonds', '5' : 'clubs', '5' : 'hearts',
-    '6' : 'spades', '6' : 'diamonds', '6' : 'clubs', '6' : 'hearts',
-    '7' : 'spades', '7' : 'diamonds', '7' : 'clubs', '7' : 'hearts',
-    '8' : 'spades', '8' : 'diamonds', '8' : 'clubs', '8' : 'hearts',
-    '9' : 'spades', '9' : 'diamonds', '9' : 'clubs', '9' : 'hearts',
-    'J' : 'spades', 'J' : 'diamonds', 'J' : 'clubs', 'J' : 'hearts',
-    'Q' : 'spades', 'Q' : 'diamonds', 'Q' : 'clubs', 'Q' : 'hearts',
-    'K' : 'spades', 'K' : 'diamonds', 'K' : 'clubs', 'K' : 'hearts'
-};
-// Assign Value to Card
-const cardValue = {
-    'A' : [1, 11],
-    '1' : 1,
-    '2' : 2,
-    '3' : 3,
-    '4' : 4,
-    '5' : 5,
-    '6' : 6,
-    '7' : 7,
-    '8' : 8,
-    '9' : 9,
-    'J' : 10,
-    'Q' : 10,
-    'K' : 10
-}
+const suits = ['spades', 'heart', 'diamonds', 'clubs'];
+const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 /*----- app's state (variables) -----*/
+let deck = [];
 let playerCards;
 let playerScore;
 let dealerCards;
@@ -54,7 +26,7 @@ let lossDisplay = document.querySelector("#losses");
 let tieDisplay = document.querySelector("#display > #ties");
 
 /*----- event listeners -----*/
-// playBtn.addEventListener("click", startGame);
+playBtn.addEventListener("click", startGame);
 // resetBtn.addEventListener("click", resetGame);
 // standBtn.addEventListener("click", stand);
 // hitBtn.addEventListener("click", hitBtn);
@@ -63,6 +35,8 @@ let tieDisplay = document.querySelector("#display > #ties");
 init();
 
 function init() {
+    deck = shuffleDeck();
+    console.log(deck);
     playerCards = [];
     dealerCards = [];
     playerScore = 0;
@@ -82,4 +56,51 @@ function render() {
     lossDisplay.innerHTML = losses;
     tieDisplay.innerHTML = ties;
     h3.innerHTML = message;
+}
+
+function getDeck() {
+    let cardDeck = [];
+    for (i = 0; i < cards.length; i++) {
+        for (j = 0; j < suits.length; j++) {
+            if (cards[i] === 'A') {
+                cardDeck.push({card : cards[i], suit : suits[j], value : 11});
+            } else if (cards[i] === 'J' || cards[i] === 'Q' || cards[i] === 'K') {
+                cardDeck.push({card : cards[i], suit : suits[j], value : 10});
+            } else {
+                cardDeck.push({card : cards[i], suit : suits[j], value : parseInt(cards[i])});
+            }
+        }
+    }
+    return cardDeck;
+}
+
+function shuffleDeck() {
+    let shuffleDeck = getDeck();
+    let index = 0;
+    while (index < shuffleDeck.length) {
+        let arrIdx1 = Math.floor(Math.random() * shuffleDeck.length);
+        let arrIdx2 = Math.floor(Math.random() * shuffleDeck.length);
+        let temp;
+
+        temp = shuffleDeck[arrIdx1];
+        shuffleDeck[arrIdx1] = shuffleDeck[arrIdx2];
+        shuffleDeck[arrIdx2] = temp;
+
+        index++;
+    }
+    return shuffleDeck;
+}
+
+function startGame() {
+    for (let i = 0; i < 2; i++) {
+        let playerC = deck.pop();
+        let dealerC = deck.pop();
+        playerCards.push({c : playerC.card, s : playerC.suit});
+        playerScore += playerC.value;
+        dealerCards.push({c : dealerC.card, s : dealerC.suit});
+        dealerScore += dealerC.value;
+    }
+    // console.log("Player cards: " + playerCards + " and score is: " + playerScore);
+    // console.log("Dealer cards: " + dealerCards + " and score is: " + dealerScore);
+    // console.log(playerCards)
 }
