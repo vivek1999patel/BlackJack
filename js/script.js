@@ -1,5 +1,5 @@
 /*----- constants -----*/
-const suits = ['spades', 'heart', 'diamonds', 'clubs'];
+const suits = ['spades', 'hearts', 'diamonds', 'clubs'];
 const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 /*----- app's state (variables) -----*/
@@ -16,7 +16,7 @@ let playBtn = document.getElementById("play");
 let resetBtn = document.getElementById("reset");
 let standBtn = document.getElementById("stand");
 let hitBtn = document.getElementById("hit");
-let pCards = document.getElementById("player_hand"); // Use to add cards in player's hand
+let pCards = document.getElementById("player_hand");
 let dCards = document.getElementById("dealer_hand");
 let pScore = document.getElementById("player_score");
 let dScore = document.getElementById("dealer_score");
@@ -29,14 +29,14 @@ let tieDisplay = document.querySelector("#display > #ties");
 playBtn.addEventListener("click", startGame);
 // resetBtn.addEventListener("click", resetGame);
 // standBtn.addEventListener("click", stand);
-// hitBtn.addEventListener("click", hitBtn);
+hitBtn.addEventListener("click", hitButton);
 
 /*----- functions -----*/
 init();
 
 function init() {
     deck = shuffleDeck();
-    console.log(deck);
+    // console.log(deck);
     playerCards = [];
     dealerCards = [];
     playerScore = 0;
@@ -51,7 +51,7 @@ function init() {
 
 function render() {
     pScore.innerHTML = playerScore;
-    dScore.innerHTML = dealerScore;
+    // dScore.innerHTML = dealerScore;
     winDisplay.innerHTML = wins;
     lossDisplay.innerHTML = losses;
     tieDisplay.innerHTML = ties;
@@ -100,7 +100,86 @@ function startGame() {
         dealerCards.push({c : dealerC.card, s : dealerC.suit});
         dealerScore += dealerC.value;
     }
-    // console.log("Player cards: " + playerCards + " and score is: " + playerScore);
-    // console.log("Dealer cards: " + dealerCards + " and score is: " + dealerScore);
-    // console.log(playerCards)
+
+    message = "Great! Choose To Stand or Hit!"
+    render();
+    displayPlayerCards();
+    displayDealerCards();
+    
+}
+
+function hitButton() {
+    let divEl = document.createElement("div");
+    if (playerScore <= 21) {
+        var playerC = deck.pop();
+        playerCards.push({c : playerC.card, s : playerC.suit});
+        playerScore += playerC.value;
+        if (playerC.card == 'A' || playerC.card == 'J' || playerC.card == 'Q' || playerC.card == 'K') {
+            divEl.classList.add("card", "large", `${playerC.suit}`, `${playerC.card}`);
+            pCards.appendChild(divEl);
+        } else {
+            divEl.classList.add("card", "large", `${playerC.suit}`, `r${playerC.card}`);
+            pCards.appendChild(divEl);
+        }
+        // render();
+        compare();
+    }
+    else {
+        message = "You loose! Better Luck Next Time";
+    }
+    render();
+}
+
+function compare() {
+    if (playerScore > 21) {
+        message = "You loose! Better Luck Next Time";
+        var el = document.querySelector(".back");
+        console.log(el);
+        el.classList.remove("back");
+        console.log(el);
+        if (dealerCards[1].c == 'A' || dealerCards[1].c == 'J' || dealerCards[1].c == 'Q' || dealerCards[1].c == 'K') {
+            el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
+            // dCards.appendChild(divEl);
+            dScore.innerHTML = dealerScore;
+        } else {
+            el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
+            // dCards.appendChild(divEl);
+            dScore.innerHTML = dealerScore;
+        }
+    }
+}
+
+function displayPlayerCards() {
+    for (let i = 0; i < playerCards.length; i++) {
+        let card = playerCards[i].c;
+        let suit = playerCards[i].s;
+        let divEl = document.createElement("div");
+        if (card == 'A' || card == 'J' || card == 'Q' || card == 'K') {
+            divEl.classList.add("card", "large", `${suit}`, `${card}`);
+            pCards.appendChild(divEl);
+        } else {
+            divEl.classList.add("card", "large", `${suit}`, `r${card}`);
+            pCards.appendChild(divEl);
+        }
+    }
+}
+
+function displayDealerCards() {
+    for (let i = 0; i < dealerCards.length; i++) {
+        let card = dealerCards[i].c;
+        let suit = dealerCards[i].s;
+        let divEl = document.createElement("div");
+        if (i === 1) {
+            divEl.classList.add("card", "large", "back");
+            dCards.appendChild(divEl);
+        } else {
+            if (card == 'A' || card == 'J' || card == 'Q' || card == 'K') {
+                divEl.classList.add("card", "large", `${suit}`, `${card}`);
+                dCards.appendChild(divEl);
+            } else {
+                divEl.classList.add("card", "large", `${suit}`, `r${card}`);
+                dCards.appendChild(divEl);
+            }
+        }
+    }
 }
