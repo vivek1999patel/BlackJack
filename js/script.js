@@ -109,6 +109,9 @@ function shuffleDeck() {
 }
 
 function startGame() {
+  if (playBtn.innerHTML === "Play Again?") {
+    resetBoard();
+  }
   for (let i = 0; i < 2; i++) {
     let playerC = deck.pop();
     let dealerC = deck.pop();
@@ -122,6 +125,7 @@ function startGame() {
       faceUpCard();
       dScore.innerHTML = dealerScore;
       message = "You Win! Hurray";
+      wins += 1;
     }
     dealerCards.push({ c: dealerC.card, s: dealerC.suit });
     dealerScore += dealerC.value;
@@ -129,15 +133,24 @@ function startGame() {
 //   message = "Great! Choose To Stand or Hit!";
   render();
   displayDealerCards();
+  playAgain();
+}
+
+function resetBoard() {
+  playerScore = 0;
+  dealerScore = 0;
+  dealerCards = [];
+  dScore.innerHTML = dealerScore;
+  let rmCards = document.querySelectorAll(".card");
+  console.log("Inside resetBoard() : " , rmCards);
+  rmCards.forEach(function(card) {
+    card.remove();
+  })
+
+  render();
 }
 
 function resetGame() {
-  // // deck = []
-  // playerCards = [];
-  // playerScore = 0;
-  // dealerCards = [];
-  // dealerScore = 0;
-  // message = "Welcome To BlackJack, Start Your Game!";
   init();
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
@@ -148,7 +161,6 @@ function resetGame() {
 }
 
 function hitButton() {
-  let divEl = document.createElement("div");
   if (playerScore <= 21) {
     var playerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
@@ -157,6 +169,7 @@ function hitButton() {
     compare();
   } else {
     message = "You loose! Better Luck Next Time";
+    losses += 1;
   }
   render();
 }
@@ -167,8 +180,10 @@ function standButton() {
     if (dealerScore <= 21) {
       faceUpCard();
       message = "You loose! Better Luck Next Time";
+      losses += 1;
     } else {
       message = "You Win! Hurray";
+      wins += 1;
     }
   } else {
     faceUpCard();
@@ -191,9 +206,11 @@ function standButton() {
       if (dealerScore > playerScore) {
         if (dealerScore > 21 && playerScore <= 21){
           message = "You Win! Hurray";
+          wins += 1;
           break;
         } else {
           message = "You loose! Better Luck Next Time";
+          losses += 1;
           break;
         }
       }
@@ -206,11 +223,18 @@ function standButton() {
 function compare() {
   if (playerScore == 21) {
     message = "You Win! Hurray";
+    wins += 1;
     faceUpCard();
   } else if (playerScore > 21) {
     message = "You loose! Better Luck Next Time";
+    losses += 1;
     faceUpCard();
   }
+}
+
+function playAgain() {
+  playBtn.innerHTML = "Play Again?";
+  playBtn.style.fontSize = "15px";
 }
 
 function displayPlayerCards(pCard) {
