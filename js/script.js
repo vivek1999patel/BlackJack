@@ -130,7 +130,7 @@ function startGame() {
     dealerCards.push({ c: dealerC.card, s: dealerC.suit });
     dealerScore += dealerC.value;
   }
-//   message = "Great! Choose To Stand or Hit!";
+  //   message = "Great! Choose To Stand or Hit!";
   render();
   displayDealerCards();
   playAgain();
@@ -142,21 +142,23 @@ function resetBoard() {
   dealerCards = [];
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
-  console.log("Inside resetBoard() : " , rmCards);
-  rmCards.forEach(function(card) {
+  console.log("Inside resetBoard() : ", rmCards);
+  rmCards.forEach(function (card) {
     card.remove();
-  })
+  });
 
   render();
 }
 
 function resetGame() {
   init();
+  playBtn.innerHTML = "Play";
+  playBtn.style.fontSize = "20px";
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
-  rmCards.forEach(function(card) {
+  rmCards.forEach(function (card) {
     card.remove();
-  })
+  });
   // render();
 }
 
@@ -193,18 +195,33 @@ function standButton() {
       dealerCards.push({ c: dealerC.card, s: dealerC.suit });
       dealerScore += dealerC.value;
       let divEl = document.createElement("div");
-      if (dealerC.card == "A" || dealerC.card == "J" || dealerC.card == "Q" || dealerC.card == "K") {
-        divEl.classList.add("card", "large", `${dealerC.suit}`, `${dealerC.card}`);
+      if (
+        dealerC.card == "A" ||
+        dealerC.card == "J" ||
+        dealerC.card == "Q" ||
+        dealerC.card == "K"
+      ) {
+        divEl.classList.add(
+          "card",
+          "large",
+          `${dealerC.suit}`,
+          `${dealerC.card}`
+        );
         dCards.appendChild(divEl);
         dScore.innerHTML = dealerScore;
       } else {
-        divEl.classList.add("card", "large", `${dealerC.suit}`, `r${dealerC.card}`);
+        divEl.classList.add(
+          "card",
+          "large",
+          `${dealerC.suit}`,
+          `r${dealerC.card}`
+        );
         dCards.appendChild(divEl);
         dScore.innerHTML = dealerScore;
       }
       // Break Condition
       if (dealerScore > playerScore) {
-        if (dealerScore > 21 && playerScore <= 21){
+        if (dealerScore > 21 && playerScore <= 21) {
           message = "You Win! Hurray";
           wins += 1;
           break;
@@ -239,13 +256,18 @@ function playAgain() {
 
 function displayPlayerCards(pCard) {
   let divEl = document.createElement("div");
-    if (pCard.card == "A" || pCard.card == "J" || pCard.card == "Q" || pCard.card == "K") {
-      divEl.classList.add("card", "large", `${pCard.suit}`, `${pCard.card}`);
-      pCards.appendChild(divEl);
-    } else {
-      divEl.classList.add("card", "large", `${pCard.suit}`, `r${pCard.card}`);
-      pCards.appendChild(divEl);
-    }
+  if (
+    pCard.card == "A" ||
+    pCard.card == "J" ||
+    pCard.card == "Q" ||
+    pCard.card == "K"
+  ) {
+    divEl.classList.add("card", "large", `${pCard.suit}`, `${pCard.card}`);
+    pCards.appendChild(divEl);
+  } else {
+    divEl.classList.add("card", "large", `${pCard.suit}`, `r${pCard.card}`);
+    pCards.appendChild(divEl);
+  }
 }
 
 function displayDealerCards() {
@@ -270,17 +292,17 @@ function displayDealerCards() {
 
 function faceUpCard() {
   let el = document.querySelector(".back");
-      el.classList.remove("back");
-      if (
-        dealerCards[1].c == "A" ||
-        dealerCards[1].c == "J" ||
-        dealerCards[1].c == "Q" ||
-        dealerCards[1].c == "K"
-      ) {
-        el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
-        dScore.innerHTML = dealerScore;
-      } else {
-        el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
-        dScore.innerHTML = dealerScore;
-      }
+  el.classList.remove("back");
+  if (
+    dealerCards[1].c == "A" ||
+    dealerCards[1].c == "J" ||
+    dealerCards[1].c == "Q" ||
+    dealerCards[1].c == "K"
+  ) {
+    el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
+    dScore.innerHTML = dealerScore;
+  } else {
+    el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
+    dScore.innerHTML = dealerScore;
+  }
 }

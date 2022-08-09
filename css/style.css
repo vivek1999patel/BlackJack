@@ -1,239 +1,264 @@
 * {
-    margin: 0;
+  margin: 0;
 }
 
 /* Body */
 body {
-    background-color: antiquewhite;
+  /* background-color: antiquewhite; */
+  background-image: url(../images/Extra/img1.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* h1 */
 h1 {
-    text-align: center;
-    margin: 20px;;
+  text-align: center;
+  margin: 20px;
+  font-size: 50px;
+  color: #eeeeee;
+  /* color: #BF360C; */
+  /* font-family: 'Courgette', cursive; */
+  font-family: "Lora", serif;
 }
 
 /* h3 */
 h3 {
-    text-align: center;
-    margin: 10px;
+  text-align: center;
+  font-family: "Lora", serif;
+  color: #e07b39;
+  font-size: 25px;
+  margin: 10px;
 }
 
 /* Main Board */
 #main-board {
-    height: 70vh;
-    border: 2px solid black;
-    width: 98%;
-    background-color: aqua;
-    margin: 10px;
-    display: flex;
+  height: 70vh;
+  /* border: 2px solid black; */
+  width: 98%;
+  /* background-color: aqua; */
+  margin: 10px;
+  display: flex;
 }
 
 #bet {
-    height: 67vh;
-    background-color: burlywood;
-    width: 20%;
-    border: 2px solid black;
-    margin: 10px;
+  height: 67vh;
+  /* background-color: burlywood; */
+  width: 20%;
+  /* border: 2px solid black; */
+  margin: 10px;
 }
 
 /* Div id:table */
 #table {
-    height: 67vh;
-    background-color: burlywood;
-    width: 80%;
-    border: 2px solid black;
-    margin: 10px;
+  height: 67vh;
+  /* background-color: burlywood; */
+  width: 80%;
+  /* border: 2px solid black; */
+  margin: 10px;
 }
 
 #div1 {
-    height: 28vh;
-    background-color: aliceblue;
-    border: 2px solid red;
-    margin: 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  height: 28vh;
+  /* background-color: aliceblue; */
+  /* border: 2px solid red; */
+  margin: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 #dealer_hand {
-    width: 60vw;
-    border: 2px solid gray;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  width: 60vw;
+  /* border: 2px solid gray; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .dealer_cards {
-    height: 12vh;
-    width: 8vw;
-    border: 1px solid black;
-    margin: 1px;
+  height: 12vh;
+  width: 8vw;
+  /* border: 1px solid black; */
+  margin: 1px;
 }
 
 #dealer_point {
-    width: 20vw;
-    border: 2px solid gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 20vw;
+  /* border: 2px solid gray; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #dealer_score {
-    height: 10vh;
-    width: 110px;
-    border: 2px solid red;
-    border-radius: 50%;
-    color: black;
-    font-size: 50px;
-    text-align: center;
+  height: 10vh;
+  width: 110px;
+  /* border: 2px solid red; */
+  border-radius: 50%;
+  color: black;
+  font-size: 50px;
+  text-align: center;
 }
 
 #div2 {
-    height: 9vh;
-    background-color: aliceblue;
-    border: 2px solid red;
-    margin: 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+  height: 9vh;
+  /* background-color: aliceblue; */
+  /* border: 2px solid red; */
+  margin: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .stand_hit {
-    height: 4vh;
-    width: 10vw;
-    font-size: 20px;
+  height: 4vh;
+  width: 10vw;
+  margin: 0px 150px 0px 0px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 #div3 {
-    height: 28vh;
-    background-color: aliceblue;
-    border: 2px solid red;
-    margin: 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  height: 28vh;
+  /* background-color: aliceblue; */
+  /* border: 2px solid red; */
+  margin: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 #player_hand {
-    width: 60vw;
-    border: 2px solid gray;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  width: 60vw;
+  /* border: 2px solid gray; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .player_cards {
-    height: 12vh;
-    width: 8vw;
-    border: 1px solid black;
-    margin: 1px;
+  height: 12vh;
+  width: 8vw;
+  /* border: 1px solid black; */
+  margin: 1px;
 }
 
 #player_point {
-    width: 20vw;
-    border: 2px solid gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 20vw;
+  /* border: 2px solid gray; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #player_score {
-    height: 10vh;
-    width: 110px;
-    border: 2px solid red;
-    border-radius: 50%;
-    color: black;
-    font-size: 50px;
-    text-align: center;
+  height: 10vh;
+  width: 110px;
+  /* border: 2px solid red; */
+  border-radius: 50%;
+  color: black;
+  font-size: 50px;
+  text-align: center;
 }
 
 /* Label for the points */
 .points {
-    margin: 0;
-    text-align: center;
+  margin: 0;
+  text-align: center;
+  font-family: "Courgette", cursive;
+  font-size: 22px;
+  color: #e07b39;
 }
 
 /* Secondary board */
 #secondary-board {
-    height: 15vh;
-    border: 2px solid black;
-    width: 98%;
-    background-color: aqua;
-    margin: 10px;
-    display: flex;
+  height: 15vh;
+  /* border: 2px solid black; */
+  width: 98%;
+  /* background-color: aqua; */
+  margin: 10px;
+  display: flex;
 }
 
 /* DIV ID: Buttons */
 #buttons {
-    height: 13vh;
-    background-color: burlywood;
-    width: 20%;
-    border: 2px solid black;
-    margin: 7px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 13vh;
+  /* background-color: burlywood; */
+  width: 20%;
+  /* border: 2px solid black; */
+  margin: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #play {
-    height: 5vh;
-    width: 15vh;
-    font-size: 20px;
-    margin-bottom: 5px;
+  height: 5vh;
+  width: 15vh;
+  font-size: 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
 
 #reset {
-    height: 5vh;
-    width: 15vh;
-    font-size: 20px;
-    margin-top: 5px;
+  height: 5vh;
+  width: 15vh;
+  font-size: 20px;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 /* DIV ID: Display */
 #display {
-    height: 13vh;
-    background-color: burlywood;
-    width: 82%;
-    border: 2px solid black;
-    margin: 7px;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
+  height: 13vh;
+  /* background-color: burlywood; */
+  width: 82%;
+  /* border: 2px solid black; */
+  margin: 7px;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
 }
 
 label {
-    font-size: 20px;
-    color: brown;
-    margin: 15px 10px 15px 70px;
+  font-size: 20px;
+  color: brown;
+  margin: 15px 10px 15px 70px;
 }
 
 #wins {
-    height: 5vh;
-    width: 15vh;
-    border: 2px solid black;
-    margin-left: 30px;
-    font-size: 30px;
-    text-align: center;
+  height: 5vh;
+  width: 15vh;
+  /* border: 2px solid black; */
+  margin-left: 30px;
+  font-size: 30px;
+  text-align: center;
 }
 
 #losses {
-    height: 5vh;
-    width: 15vh;
-    border: 2px solid black;
-    margin-left: 30px;
-    font-size: 30px;
-    text-align: center;
+  height: 5vh;
+  width: 15vh;
+  /* border: 2px solid black; */
+  margin-left: 30px;
+  font-size: 30px;
+  text-align: center;
 }
 
 #ties {
-    height: 5vh;
-    width: 15vh;
-    border: 2px solid black;
-    margin-left: 30px;
-    font-size: 30px;
-    text-align: center;
+  height: 5vh;
+  width: 15vh;
+  /* border: 2px solid black; */
+  margin-left: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.wlt {
+  font-family: "Courgette", cursive;
+  font-size: 22px;
+  color: #e07b39;
 }
