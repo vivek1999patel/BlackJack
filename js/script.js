@@ -50,7 +50,6 @@ init();
 
 function init() {
   deck = shuffleDeck();
-  // console.log(deck);
   playerCards = [];
   dealerCards = [];
   playerScore = 0;
@@ -96,8 +95,8 @@ function shuffleDeck() {
   let shuffleDeck = getDeck();
   let index = 0;
   while (index < shuffleDeck.length) {
-    let arrIdx1 = Math.floor(Math.random() * shuffleDeck.length);
-    let arrIdx2 = Math.floor(Math.random() * shuffleDeck.length);
+    let arrIdx1 = Math.floor(Math.random() * shuffleDeck.length + 0);
+    let arrIdx2 = Math.floor(Math.random() * shuffleDeck.length + 0);
     let temp;
 
     temp = shuffleDeck[arrIdx1];
@@ -116,6 +115,8 @@ function startGame() {
     playerCards.push({ c: playerC.card, s: playerC.suit });
     playerScore += playerC.value;
     if (playerScore == 21) {
+      faceUpCard();
+      dScore.innerHTML = dealerScore;
       message = "You Win! Hurray";
     }
     dealerCards.push({ c: dealerC.card, s: dealerC.suit });
@@ -155,7 +156,6 @@ function hitButton() {
       );
       pCards.appendChild(divEl);
     }
-    // render();
     compare();
   } else {
     message = "You loose! Better Luck Next Time";
@@ -166,209 +166,52 @@ function hitButton() {
 function standButton() {
   console.log(dealerScore);
   if (dealerScore > playerScore) {
-    // make a fucntion later to face up the second card
-    if (dealerScore == 21) {
-      message = "You loose! Better Luck Next Time";
-    }
     if (dealerScore <= 21) {
-      // face up the card
-      var el = document.querySelector(".back");
-      console.log(el);
-      el.classList.remove("back");
-      console.log(el);
-      if (
-        dealerCards[1].c == "A" ||
-        dealerCards[1].c == "J" ||
-        dealerCards[1].c == "Q" ||
-        dealerCards[1].c == "K"
-      ) {
-        el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
-        // dCards.appendChild(divEl);
-        dScore.innerHTML = dealerScore;
-      } else {
-        el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
-        // dCards.appendChild(divEl);
-        dScore.innerHTML = dealerScore;
-      }
+      faceUpCard();
       message = "You loose! Better Luck Next Time";
     } else {
       message = "You Win! Hurray";
     }
-    //   } else if (dealerScore < playerScore) {
-    //     console.log(dealerScore);
-    //     var el = document.querySelector(".back");
-    //     console.log(el);
-    //     el.classList.remove("back");
-    //     console.log(el);
-    //     if (
-    //       dealerCards[1].c == "A" ||
-    //       dealerCards[1].c == "J" ||
-    //       dealerCards[1].c == "Q" ||
-    //       dealerCards[1].c == "K"
-    //     ) {
-    //       el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
-    //       // dCards.appendChild(divEl);
-    //       dScore.innerHTML = dealerScore;
-    //     } else {
-    //       el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
-    //       // dCards.appendChild(divEl);
-    //       dScore.innerHTML = dealerScore;
-    //     }
-    //     // do {
-    //     // face up the card
-    //     //   var el = document.querySelector(".back");
-    //     //   console.log(el);
-    //     //   el.classList.remove("back");
-    //     //   console.log(el);
-    //     //   if (
-    //     //     dealerCards[1].c == "A" ||
-    //     //     dealerCards[1].c == "J" ||
-    //     //     dealerCards[1].c == "Q" ||
-    //     //     dealerCards[1].c == "K"
-    //     //   ) {
-    //     //     el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
-    //     //     // dCards.appendChild(divEl);
-    //     //     dScore.innerHTML = dealerScore;
-    //     //   } else {
-    //     //     el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
-    //     //     // dCards.appendChild(divEl);
-    //     //     dScore.innerHTML = dealerScore;
-    //     //   }
-    //     //   // add card
-    //     //   let dealerC = deck.pop();
-    //     //   dealerScore += dealerC.value;
-    //     //   console.log(dealerScore);
-    //     //   var divEl = document.createElement("div");
-    //     //   if (
-    //     //     dealerC.card == "A" ||
-    //     //     dealerC.card == "J" ||
-    //     //     dealerC.card == "Q" ||
-    //     //     dealerC.card == "K"
-    //     //   ) {
-    //     //     divEl.classList.add(
-    //     //       "card",
-    //     //       "large",
-    //     //       `${dealerC.suit}`,
-    //     //       `${dealerC.card}`
-    //     //     );
-    //     //     dCards.appendChild(divEl);
-    //     //   } else {
-    //     //     divEl.classList.add(
-    //     //       "card",
-    //     //       "large",
-    //     //       `${dealerC.suit}`,
-    //     //       `r${dealerC.card}`
-    //     //     );
-    //     //     dCards.appendChild(divEl);
-    //     //   }
-    //     //   render();
-    //     // }
-    //     while (dealerScore < 21);
-    //     {
-    //       console.log(dealerScore);
-    //       //   let dealerC = deck.pop();
-    //       //   dealerScore += dealerC.value;
-    //       //   var divEl = document.createElement("div");
-    //       //   if (
-    //       //     dealerC.card == "A" ||
-    //       //     dealerC.card == "J" ||
-    //       //     dealerC.card == "Q" ||
-    //       //     dealerC.card == "K"
-    //       //   ) {
-    //       //     divEl.classList.add(
-    //       //       "card",
-    //       //       "large",
-    //       //       `${dealerC.suit}`,
-    //       //       `${dealerC.card}`
-    //       //     );
-    //       //     dCards.appendChild(divEl);
-    //       //   } else {
-    //       //     divEl.classList.add(
-    //       //       "card",
-    //       //       "large",
-    //       //       `${dealerC.suit}`,
-    //       //       `r${dealerC.card}`
-    //       //     );
-    //       //     dCards.appendChild(divEl);
-    //       //   }
-
-    //       //   render();
-    //       // add card
-    //       let dealerC = deck.pop();
-    //       dealerScore += dealerC.value;
-    //       console.log(dealerScore);
-    //       var divEl = document.createElement("div");
-    //       if (
-    //         dealerC.card == "A" ||
-    //         dealerC.card == "J" ||
-    //         dealerC.card == "Q" ||
-    //         dealerC.card == "K"
-    //       ) {
-    //         divEl.classList.add(
-    //           "card",
-    //           "large",
-    //           `${dealerC.suit}`,
-    //           `${dealerC.card}`
-    //         );
-    //         dCards.appendChild(divEl);
-    //       } else {
-    //         divEl.classList.add(
-    //           "card",
-    //           "large",
-    //           `${dealerC.suit}`,
-    //           `r${dealerC.card}`
-    //         );
-    //         dCards.appendChild(divEl);
-    //       }
-    //     }
-    //     render();
-    //   }
-    render();
+  } else {
+    faceUpCard();
+    while (dealerScore <= 21) {
+      // Add Card
+      let dealerC = deck.pop();
+      dealerCards.push({ c: dealerC.card, s: dealerC.suit });
+      dealerScore += dealerC.value;
+      let divEl = document.createElement("div");
+      if (dealerC.card == "A" || dealerC.card == "J" || dealerC.card == "Q" || dealerC.card == "K") {
+        divEl.classList.add("card", "large", `${dealerC.suit}`, `${dealerC.card}`);
+        dCards.appendChild(divEl);
+        dScore.innerHTML = dealerScore;
+      } else {
+        divEl.classList.add("card", "large", `${dealerC.suit}`, `r${dealerC.card}`);
+        dCards.appendChild(divEl);
+        dScore.innerHTML = dealerScore;
+      }
+      // Break Condition
+      if (dealerScore > playerScore) {
+        if (dealerScore > 21 && playerScore <= 21){
+          message = "You Win! Hurray";
+          break;
+        } else {
+          message = "You loose! Better Luck Next Time";
+          break;
+        }
+      }
+      render();
+    }
   }
+  render();
 }
 
 function compare() {
   if (playerScore == 21) {
     message = "You Win! Hurray";
-    // face up dealer card
-    var el = document.querySelector(".back");
-    console.log(el);
-    el.classList.remove("back");
-    console.log(el);
-    if (
-      dealerCards[1].c == "A" ||
-      dealerCards[1].c == "J" ||
-      dealerCards[1].c == "Q" ||
-      dealerCards[1].c == "K"
-    ) {
-      el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
-      // dCards.appendChild(divEl);
-      dScore.innerHTML = dealerScore;
-    } else {
-      el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
-      // dCards.appendChild(divEl);
-      dScore.innerHTML = dealerScore;
-    }
+    faceUpCard();
   } else if (playerScore > 21) {
     message = "You loose! Better Luck Next Time";
-    var el = document.querySelector(".back");
-    console.log(el);
-    el.classList.remove("back");
-    console.log(el);
-    if (
-      dealerCards[1].c == "A" ||
-      dealerCards[1].c == "J" ||
-      dealerCards[1].c == "Q" ||
-      dealerCards[1].c == "K"
-    ) {
-      el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
-      // dCards.appendChild(divEl);
-      dScore.innerHTML = dealerScore;
-    } else {
-      el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
-      // dCards.appendChild(divEl);
-      dScore.innerHTML = dealerScore;
-    }
+    faceUpCard();
   }
 }
 
@@ -405,4 +248,21 @@ function displayDealerCards() {
       }
     }
   }
+}
+
+function faceUpCard() {
+  let el = document.querySelector(".back");
+      el.classList.remove("back");
+      if (
+        dealerCards[1].c == "A" ||
+        dealerCards[1].c == "J" ||
+        dealerCards[1].c == "Q" ||
+        dealerCards[1].c == "K"
+      ) {
+        el.classList.add(`${dealerCards[1].s}`, `${dealerCards[1].c}`);
+        dScore.innerHTML = dealerScore;
+      } else {
+        el.classList.add(`${dealerCards[1].s}`, `r${dealerCards[1].c}`);
+        dScore.innerHTML = dealerScore;
+      }
 }
