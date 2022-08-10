@@ -1,3 +1,7 @@
+// TO-DO
+// 1. make sure to check if there are more than 22 cards in deck before player can playAgain
+
+
 /*----- constants -----*/
 const suits = ["spades", "hearts", "diamonds", "clubs"];
 const cards = [
@@ -24,6 +28,8 @@ let dealerCards;
 let dealerScore;
 let wins, losses, ties;
 let message;
+let score;
+let acesCount;
 
 /*----- cached element references -----*/
 let playBtn = document.getElementById("play");
@@ -58,6 +64,8 @@ function init() {
   wins = 0;
   losses = 0;
   ties = 0;
+  acesCount = 0;
+  score = 0;
   message = "Welcome To BlackJack, Start Your Game!";
 
   render();
@@ -121,24 +129,40 @@ function startGame() {
     let playerC = deck.pop();
     let dealerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
-    playerScore += playerC.value;
+    var value = 0;
+    value = acesInHand(playerCards);
+    if (value == 0) {
+      playerScore += playerC.value;
+    } else {
+      playerScore += value;
+    }
     dealerCards.push({ c: dealerC.card, s: dealerC.suit });
-    dealerScore += dealerC.value;
+    value = acesInHand(dealerCards);
+    if (value == 0) {
+      dealerScore += dealerC.value;
+    } else {
+      dealerScore += value;
+    }
 
     render();
     displayPlayerCards(playerC);
-    // displayDealerCards();
-
-    if (playerScore == 21) {
-      faceUpCard();
-      dScore.innerHTML = dealerScore;
-      message = "You Win! Hurray";
-      wins += 1;
-    }
   }
-  //   message = "Great! Choose To Stand or Hit!";
   render();
   displayDealerCards();
+  if (playerScore == 21) {
+    faceUpCard();
+    dScore.innerHTML = dealerScore;
+    message = "You Win! Hurray";
+    wins += 1;
+    render();
+  }
+  if (playerScore > 21) {
+    faceUpCard();
+    dScore.innerHTML = dealerScore;
+    message = "You loose! Better Luck Next Time";
+    losses += 1;
+    render();
+  }
   playAgain();
 }
 
@@ -189,9 +213,19 @@ function playAgain() {
 
 // resetBoard() will reset the player's and dealer's cards and score after each game
 function resetBoard() {
+  if (deck.length < 21) {
+    message = "Not enough cards! Reset The Game";
+    // init();
+  } else {
+    message = "Welcome To BlackJack, Start Your Game!";
+  }
   playerScore = 0;
   dealerScore = 0;
+  playerCards = [];
   dealerCards = [];
+  score = 0;
+  acesCount = 0;
+  // message = "Welcome To BlackJack, Start Your Game!";
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
   rmCards.forEach(function (card) {
@@ -206,7 +240,13 @@ function hitButton() {
   if (playerScore <= 21) {
     var playerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
-    playerScore += playerC.value;
+    var value = 0;
+    value = acesInHand(playerCards);
+    if (value == 0) {
+      playerScore += playerC.value;
+    } else {
+      playerScore += value;
+    }
     displayPlayerCards(playerC);
     compare();
   } else {
@@ -234,7 +274,13 @@ function standButton() {
       // Add Card
       let dealerC = deck.pop();
       dealerCards.push({ c: dealerC.card, s: dealerC.suit });
-      dealerScore += dealerC.value;
+      var value = 0;
+      value = acesInHand(dealerCards);
+      if (value == 0) {
+        dealerScore += dealerC.value;
+      } else {
+        dealerScore += value;
+      }
       addOneDealerCard(dealerC);
       // Break Condition
       if (dealerScore > playerScore) {
@@ -286,6 +332,27 @@ function resetGame() {
     card.remove();
   });
   // render();
+}
+
+function acesInHand(hand) {
+  console.log(hand);
+  for (i = 0; i < hand.length; i++) {
+    console.log(hand[i].c);
+    if (hand[i].c === "A") {
+      acesCount += 1;
+      console.log(acesCount);
+      if (acesCount > 1) {
+        score = 1;
+      }
+      if (acesCount == 1) {
+        score = 11;
+      }
+    } else {
+      score = 0;
+    }
+  }
+  console.log(score);
+  return score;
 }
 
 // compare() will be called to compare the playerScore against dealerScore
