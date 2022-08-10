@@ -114,11 +114,18 @@ h3 {
 }
 
 .stand_hit {
-  height: 4vh;
+  height: 5vh;
   width: 10vw;
   margin: 0px 150px 0px 0px;
+  font-family: "Lora", serif;
   font-size: 20px;
+  border-radius: 20px;
   cursor: pointer;
+}
+
+.stand_hit:hover {
+  background-color: black;
+  color: white;
 }
 
 #div3 {
@@ -200,17 +207,31 @@ h3 {
 #play {
   height: 5vh;
   width: 15vh;
+  font-family: "Lora", serif;
   font-size: 20px;
+  border-radius: 10px;
   margin-bottom: 5px;
   cursor: pointer;
+}
+
+#play:hover {
+  background-color: black;
+  color: white;
 }
 
 #reset {
   height: 5vh;
   width: 15vh;
+  font-family: "Lora", serif;
   font-size: 20px;
+  border-radius: 10px;
   margin-top: 5px;
   cursor: pointer;
+}
+
+#reset:hover {
+  background-color: black;
+  color: white;
 }
 
 /* DIV ID: Display */

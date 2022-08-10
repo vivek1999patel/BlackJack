@@ -117,9 +117,12 @@ function startGame() {
     let dealerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
     playerScore += playerC.value;
+    dealerCards.push({ c: dealerC.card, s: dealerC.suit });
+    dealerScore += dealerC.value;
 
     render();
     displayPlayerCards(playerC);
+    // displayDealerCards();
 
     if (playerScore == 21) {
       faceUpCard();
@@ -127,8 +130,6 @@ function startGame() {
       message = "You Win! Hurray";
       wins += 1;
     }
-    dealerCards.push({ c: dealerC.card, s: dealerC.suit });
-    dealerScore += dealerC.value;
   }
   //   message = "Great! Choose To Stand or Hit!";
   render();
@@ -142,7 +143,6 @@ function resetBoard() {
   dealerCards = [];
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
-  console.log("Inside resetBoard() : ", rmCards);
   rmCards.forEach(function (card) {
     card.remove();
   });
@@ -154,6 +154,7 @@ function resetGame() {
   init();
   playBtn.innerHTML = "Play";
   playBtn.style.fontSize = "20px";
+  playBtn.style.width = "15vh";
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
   rmCards.forEach(function (card) {
@@ -251,7 +252,8 @@ function compare() {
 
 function playAgain() {
   playBtn.innerHTML = "Play Again?";
-  playBtn.style.fontSize = "15px";
+  playBtn.style.fontSize = "20px";
+  playBtn.style.width = "20vh";
 }
 
 function displayPlayerCards(pCard) {
