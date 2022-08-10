@@ -291,13 +291,13 @@ function hitButton() {
   if (playerScore <= 21) {
     var playerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
-    // var value = 0;
-    // value = acesInHand(playerCards);
-    // if (value == 0) {
-    //   playerScore += playerC.value;
-    // } else {
-    //   playerScore += value;
-    // }
+    var value = 0;
+    value = acesInHand(playerCards);
+    if (value == 0) {
+      playerScore += playerC.value;
+    } else {
+      playerScore += value;
+    }
     displayPlayerCards(playerC);
     compare();
   } else {
