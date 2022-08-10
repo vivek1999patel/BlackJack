@@ -30,6 +30,8 @@ h4 {
     width: 25vh;
     border: 1px solid red;
     margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
 }
 
 #bet > #div1 > #bet_amount {
@@ -37,6 +39,8 @@ h4 {
     width: 25vh;
     border: 1px solid red;
     margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
 }
 
 #bet > #div2 {
