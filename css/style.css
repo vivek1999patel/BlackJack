@@ -1,10 +1,10 @@
+/* Root */
 * {
   margin: 0;
 }
 
 /* Body */
 body {
-  /* background-color: antiquewhite; */
   background-image: url(../images/Extra/img1.jpeg);
   background-position: center;
   background-repeat: no-repeat;
@@ -17,8 +17,6 @@ h1 {
   margin: 20px;
   font-size: 50px;
   color: #eeeeee;
-  /* color: #BF360C; */
-  /* font-family: 'Courgette', cursive; */
   font-family: "Lora", serif;
 }
 
@@ -31,81 +29,67 @@ h3 {
   margin: 10px;
 }
 
-/* Main Board */
+/* Main-Board */
 #main-board {
   height: 70vh;
-  /* border: 2px solid black; */
   width: 98%;
-  /* background-color: aqua; */
   margin: 10px;
   display: flex;
 }
 
+/* Bet in Main-Board */
 #bet {
   height: 67vh;
-  /* background-color: burlywood; */
   width: 20%;
-  /* border: 2px solid black; */
   margin: 10px;
 }
 
-/* Div id:table */
+/* Table in Main-Board */
 #table {
   height: 67vh;
-  /* background-color: burlywood; */
   width: 80%;
-  /* border: 2px solid black; */
   margin: 10px;
 }
 
+/* Div1 in Table */
 #div1 {
   height: 28vh;
-  /* background-color: aliceblue; */
-  /* border: 2px solid red; */
   margin: 2px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
+/* Dealer-hand in Div1 of Table */
 #dealer_hand {
   width: 60vw;
-  /* border: 2px solid gray; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.dealer_cards {
-  height: 12vh;
-  width: 8vw;
-  /* border: 1px solid black; */
-  margin: 1px;
-}
-
+/* Dealer-point Div */
 #dealer_point {
   width: 20vw;
-  /* border: 2px solid gray; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+/* Delaer-score Div */
 #dealer_score {
   height: 10vh;
   width: 110px;
-  /* border: 2px solid red; */
   border-radius: 50%;
   color: black;
   font-size: 50px;
   text-align: center;
 }
 
+/* Div2 in Table */
 #div2 {
   height: 9vh;
-  /* background-color: aliceblue; */
-  /* border: 2px solid red; */
   margin: 2px;
   display: flex;
   flex-direction: row;
@@ -113,6 +97,7 @@ h3 {
   align-items: center;
 }
 
+/* Stand & Hit Buttons */
 .stand_hit {
   height: 5vh;
   width: 10vw;
@@ -128,44 +113,36 @@ h3 {
   color: white;
 }
 
+/* Div3 in Table */
 #div3 {
   height: 28vh;
-  /* background-color: aliceblue; */
-  /* border: 2px solid red; */
   margin: 2px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
+/* Player-hand */
 #player_hand {
   width: 60vw;
-  /* border: 2px solid gray; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.player_cards {
-  height: 12vh;
-  width: 8vw;
-  /* border: 1px solid black; */
-  margin: 1px;
-}
-
+/* Player-point Div */
 #player_point {
   width: 20vw;
-  /* border: 2px solid gray; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+/* Playe-Score Div */
 #player_score {
   height: 10vh;
   width: 110px;
-  /* border: 2px solid red; */
   border-radius: 50%;
   color: black;
   font-size: 50px;
@@ -184,9 +161,7 @@ h3 {
 /* Secondary board */
 #secondary-board {
   height: 15vh;
-  /* border: 2px solid black; */
   width: 98%;
-  /* background-color: aqua; */
   margin: 10px;
   display: flex;
 }
@@ -194,9 +169,7 @@ h3 {
 /* DIV ID: Buttons */
 #buttons {
   height: 13vh;
-  /* background-color: burlywood; */
   width: 20%;
-  /* border: 2px solid black; */
   margin: 7px;
   display: flex;
   flex-direction: column;
@@ -204,6 +177,7 @@ h3 {
   align-items: center;
 }
 
+/* Play Button */
 #play {
   height: 5vh;
   width: 15vh;
@@ -219,6 +193,7 @@ h3 {
   color: white;
 }
 
+/* Reset Button */
 #reset {
   height: 5vh;
   width: 15vh;
@@ -237,42 +212,41 @@ h3 {
 /* DIV ID: Display */
 #display {
   height: 13vh;
-  /* background-color: burlywood; */
   width: 82%;
-  /* border: 2px solid black; */
   margin: 7px;
   display: grid;
   grid-template-columns: 33% 33% 33%;
 }
 
+/* Label for Win/Loss/Tie */
 label {
   font-size: 20px;
   color: brown;
   margin: 15px 10px 15px 70px;
 }
 
+/* Wins Div */
 #wins {
   height: 5vh;
   width: 15vh;
-  /* border: 2px solid black; */
   margin-left: 30px;
   font-size: 30px;
   text-align: center;
 }
 
+/* Losses Div */
 #losses {
   height: 5vh;
   width: 15vh;
-  /* border: 2px solid black; */
   margin-left: 30px;
   font-size: 30px;
   text-align: center;
 }
 
+/* Ties Div */
 #ties {
   height: 5vh;
   width: 15vh;
-  /* border: 2px solid black; */
   margin-left: 30px;
   font-size: 30px;
   text-align: center;

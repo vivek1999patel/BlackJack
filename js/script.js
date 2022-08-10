@@ -48,6 +48,7 @@ hitBtn.addEventListener("click", hitButton);
 /*----- functions -----*/
 init();
 
+// init() will initilize all the required variables value when page loads
 function init() {
   deck = shuffleDeck();
   playerCards = [];
@@ -62,15 +63,17 @@ function init() {
   render();
 }
 
+// render() will render all the value everytime value updates
 function render() {
   pScore.innerHTML = playerScore;
-  // dScore.innerHTML = dealerScore;
+  // dScore.innerHTML = 0;
   winDisplay.innerHTML = wins;
   lossDisplay.innerHTML = losses;
   tieDisplay.innerHTML = ties;
   h3.innerHTML = message;
 }
 
+// getDeck() will make deck of 52 cards with the combination of 13 cards and 4 suits
 function getDeck() {
   let cardDeck = [];
   for (i = 0; i < cards.length; i++) {
@@ -91,6 +94,7 @@ function getDeck() {
   return cardDeck;
 }
 
+// shuffleDeck() will shuffle cards after making deck
 function shuffleDeck() {
   let shuffleDeck = getDeck();
   let index = 0;
@@ -108,6 +112,7 @@ function shuffleDeck() {
   return shuffleDeck;
 }
 
+// startGame() will be called when the player will click on the Play Button
 function startGame() {
   if (playBtn.innerHTML === "Play Again?") {
     resetBoard();
@@ -137,125 +142,7 @@ function startGame() {
   playAgain();
 }
 
-function resetBoard() {
-  playerScore = 0;
-  dealerScore = 0;
-  dealerCards = [];
-  dScore.innerHTML = dealerScore;
-  let rmCards = document.querySelectorAll(".card");
-  rmCards.forEach(function (card) {
-    card.remove();
-  });
-
-  render();
-}
-
-function resetGame() {
-  init();
-  playBtn.innerHTML = "Play";
-  playBtn.style.fontSize = "20px";
-  playBtn.style.width = "15vh";
-  dScore.innerHTML = dealerScore;
-  let rmCards = document.querySelectorAll(".card");
-  rmCards.forEach(function (card) {
-    card.remove();
-  });
-  // render();
-}
-
-function hitButton() {
-  if (playerScore <= 21) {
-    var playerC = deck.pop();
-    playerCards.push({ c: playerC.card, s: playerC.suit });
-    playerScore += playerC.value;
-    displayPlayerCards(playerC);
-    compare();
-  } else {
-    message = "You loose! Better Luck Next Time";
-    losses += 1;
-  }
-  render();
-}
-
-function standButton() {
-  console.log(dealerScore);
-  if (dealerScore > playerScore) {
-    if (dealerScore <= 21) {
-      faceUpCard();
-      message = "You loose! Better Luck Next Time";
-      losses += 1;
-    } else {
-      message = "You Win! Hurray";
-      wins += 1;
-    }
-  } else {
-    faceUpCard();
-    while (dealerScore <= 21) {
-      // Add Card
-      let dealerC = deck.pop();
-      dealerCards.push({ c: dealerC.card, s: dealerC.suit });
-      dealerScore += dealerC.value;
-      let divEl = document.createElement("div");
-      if (
-        dealerC.card == "A" ||
-        dealerC.card == "J" ||
-        dealerC.card == "Q" ||
-        dealerC.card == "K"
-      ) {
-        divEl.classList.add(
-          "card",
-          "large",
-          `${dealerC.suit}`,
-          `${dealerC.card}`
-        );
-        dCards.appendChild(divEl);
-        dScore.innerHTML = dealerScore;
-      } else {
-        divEl.classList.add(
-          "card",
-          "large",
-          `${dealerC.suit}`,
-          `r${dealerC.card}`
-        );
-        dCards.appendChild(divEl);
-        dScore.innerHTML = dealerScore;
-      }
-      // Break Condition
-      if (dealerScore > playerScore) {
-        if (dealerScore > 21 && playerScore <= 21) {
-          message = "You Win! Hurray";
-          wins += 1;
-          break;
-        } else {
-          message = "You loose! Better Luck Next Time";
-          losses += 1;
-          break;
-        }
-      }
-      render();
-    }
-  }
-  render();
-}
-
-function compare() {
-  if (playerScore == 21) {
-    message = "You Win! Hurray";
-    wins += 1;
-    faceUpCard();
-  } else if (playerScore > 21) {
-    message = "You loose! Better Luck Next Time";
-    losses += 1;
-    faceUpCard();
-  }
-}
-
-function playAgain() {
-  playBtn.innerHTML = "Play Again?";
-  playBtn.style.fontSize = "20px";
-  playBtn.style.width = "20vh";
-}
-
+// displayPlayerCards() will add and display card on the screen whenever needed
 function displayPlayerCards(pCard) {
   let divEl = document.createElement("div");
   if (
@@ -272,6 +159,7 @@ function displayPlayerCards(pCard) {
   }
 }
 
+// displayDealerCards() will add and display two card in the beginning of the game
 function displayDealerCards() {
   for (let i = 0; i < dealerCards.length; i++) {
     let card = dealerCards[i].c;
@@ -292,6 +180,128 @@ function displayDealerCards() {
   }
 }
 
+// playAgain() will be called to change the CSS of play Button
+function playAgain() {
+  playBtn.innerHTML = "Play Again?";
+  playBtn.style.fontSize = "20px";
+  playBtn.style.width = "20vh";
+}
+
+// resetBoard() will reset the player's and dealer's cards and score after each game
+function resetBoard() {
+  playerScore = 0;
+  dealerScore = 0;
+  dealerCards = [];
+  dScore.innerHTML = dealerScore;
+  let rmCards = document.querySelectorAll(".card");
+  rmCards.forEach(function (card) {
+    card.remove();
+  });
+
+  render();
+}
+
+// hitButton() will be called when player choose to hit in game
+function hitButton() {
+  if (playerScore <= 21) {
+    var playerC = deck.pop();
+    playerCards.push({ c: playerC.card, s: playerC.suit });
+    playerScore += playerC.value;
+    displayPlayerCards(playerC);
+    compare();
+  } else {
+    message = "You loose! Better Luck Next Time";
+    losses += 1;
+  }
+  render();
+}
+
+// standButton() will be called when player choose to stand in game
+function standButton() {
+  console.log(dealerScore);
+  if (dealerScore > playerScore) {
+    if (dealerScore <= 21) {
+      faceUpCard();
+      message = "You loose! Better Luck Next Time";
+      losses += 1;
+    } else {
+      message = "You Win! Hurray";
+      wins += 1;
+    }
+  } else {
+    faceUpCard();
+    while (dealerScore <= 21) {
+      // Add Card
+      let dealerC = deck.pop();
+      dealerCards.push({ c: dealerC.card, s: dealerC.suit });
+      dealerScore += dealerC.value;
+      addOneDealerCard(dealerC);
+      // Break Condition
+      if (dealerScore > playerScore) {
+        if (dealerScore > 21 && playerScore <= 21) {
+          message = "You Win! Hurray";
+          wins += 1;
+          break;
+        } else {
+          message = "You loose! Better Luck Next Time";
+          losses += 1;
+          break;
+        }
+      }
+      render();
+    }
+  }
+  render();
+}
+
+// addOneDealerCard() will single card in dealer's hand when needed
+function addOneDealerCard(dealerC) {
+  let divEl = document.createElement("div");
+  if (
+    dealerC.card == "A" ||
+    dealerC.card == "J" ||
+    dealerC.card == "Q" ||
+    dealerC.card == "K"
+  ) {
+    divEl.classList.add("card", "large", `${dealerC.suit}`, `${dealerC.card}`);
+    dCards.appendChild(divEl);
+    dScore.innerHTML = dealerScore;
+  } else {
+    divEl.classList.add("card", "large", `${dealerC.suit}`, `r${dealerC.card}`);
+    dCards.appendChild(divEl);
+    dScore.innerHTML = dealerScore;
+  }
+  render();
+}
+
+// resetGame() will be called when player will call the Reset Button
+function resetGame() {
+  init();
+  playBtn.innerHTML = "Play";
+  playBtn.style.fontSize = "20px";
+  playBtn.style.width = "15vh";
+  dScore.innerHTML = dealerScore;
+  let rmCards = document.querySelectorAll(".card");
+  rmCards.forEach(function (card) {
+    card.remove();
+  });
+  // render();
+}
+
+// compare() will be called to compare the playerScore against dealerScore
+function compare() {
+  if (playerScore == 21) {
+    message = "You Win! Hurray";
+    wins += 1;
+    faceUpCard();
+  } else if (playerScore > 21) {
+    message = "You loose! Better Luck Next Time";
+    losses += 1;
+    faceUpCard();
+  }
+}
+
+// faceUpCard() will be used to faceUp the second card of dealer in game
 function faceUpCard() {
   let el = document.querySelector(".back");
   el.classList.remove("back");
