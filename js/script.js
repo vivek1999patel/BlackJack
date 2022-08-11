@@ -359,7 +359,14 @@ function standButton() {
           dealerScore = s;
         }
       } else {
-        dealerScore = s;
+        if(dealerC.card != 'A') {
+          if (dealerCards[2].c === dealerC.card) {
+            s = s - 10;
+            dealerScore = s;
+          } else {
+            dealerScore = s;
+          }
+        }
       }
       addOneDealerCard(dealerC);
       // Break Condition
