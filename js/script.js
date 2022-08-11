@@ -1,7 +1,3 @@
-// TO-DO
-// 1. make sure to check if there are more than 22 cards in deck before player can playAgain
-
-
 /*----- constants -----*/
 const suits = ["spades", "hearts", "diamonds", "clubs"];
 const cards = [
@@ -28,22 +24,11 @@ let dealerCards;
 let dealerScore;
 let wins, losses, ties;
 let message;
-let score;
 let totalAmount;
 let betValue;
 let earned;
 
 /*----- cached element references -----*/
-// Bet Table
-// let amount = document.querySelector("#bet > #div1 > #amount");
-// let betAmount = document.querySelector("#bet > #div1 > #bet_amount");
-// let betBtn = document.querySelectorAll("#bet > #div2 > .bet_btn");
-// let betBtn1 = document.querySelector("#bet > #div2 > #btn1");
-// let betBtn2 = document.querySelector("#bet > #div2 > #btn2");
-// let betBtn3 = document.querySelector("#bet > #div2 > #btn3");
-// let betBtn4 = document.querySelector("#bet > #div2 > #btn4");
-// let betBtn5 = document.querySelector("#bet > #div2 > #btn5");
-
 let playBtn = document.getElementById("play");
 let resetBtn = document.getElementById("reset");
 let standBtn = document.getElementById("stand");
@@ -58,14 +43,6 @@ let lossDisplay = document.querySelector("#losses");
 let tieDisplay = document.querySelector("#display > #ties");
 
 /*----- event listeners -----*/
-// Bet Amount Buttons
-// betBtn1.addEventListener("click", showBetAmount);
-// betBtn2.addEventListener("click", showBetAmount);
-// betBtn3.addEventListener("click", showBetAmount);
-// betBtn4.addEventListener("click", showBetAmount);
-// betBtn5.addEventListener("click", showBetAmount);
-// betBtn.addEventListener("click", showBetAmount);
-
 playBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", resetGame);
 standBtn.addEventListener("click", standButton);
@@ -77,8 +54,6 @@ init();
 // init() will initilize all the required variables value when page loads
 function init() {
   deck = shuffleDeck();
-  // totalAmount = 1000;
-  // betValue = 0;
   playerCards = [];
   dealerCards = [];
   playerScore = 0;
@@ -102,13 +77,10 @@ function init() {
 // render() will render all the value everytime value updates
 function render() {
   pScore.innerHTML = playerScore;
-  // dScore.innerHTML = 0;
   winDisplay.innerHTML = wins;
   lossDisplay.innerHTML = losses;
   tieDisplay.innerHTML = ties;
   h3.innerHTML = message;
-  // amount.innerHTML = totalAmount;
-  // betAmount.innerHTML = betValue;
 }
 
 // getDeck() will make deck of 52 cards with the combination of 13 cards and 4 suits
@@ -159,22 +131,9 @@ function startGame() {
     let playerC = deck.pop();
     let dealerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
-    var value = 0;
-    value = acesInHand(playerCards);
-    if (value == 0) {
-      playerScore += playerC.value;
-    } else {
-      playerScore += value;
-    }
-    // playerScore += checkScore(playerC);
     dealerCards.push({ c: dealerC.card, s: dealerC.suit });
-    value = acesInHand(dealerCards);
-    if (value == 0) {
-      dealerScore += dealerC.value;
-    } else {
-      dealerScore += value;
-    }
-    // dealerScore += checkScore(dealerC);
+    playerScore += playerC.value;
+    dealerScore += dealerC.value;
 
     render();
     displayPlayerCards(playerC);
@@ -201,21 +160,6 @@ function startGame() {
   }
   playAgain();
 }
-
-// function checkScore(card) { 
-//   var value = 0
-//   var score = 0;
-//   value = acesInHand(card);
-//   console.log(value);
-//   if (value === 0) {
-//     score = card.value;
-//     return score;
-//   } else {
-//     score = value;
-//     return score;
-//   }
-// }
-
 
 // displayPlayerCards() will add and display card on the screen whenever needed
 function displayPlayerCards(pCard) {
@@ -288,15 +232,54 @@ function resetBoard() {
 
 // hitButton() will be called when player choose to hit in game
 function hitButton() {
+  let s = 0;
   if (playerScore <= 21) {
     var playerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
-    var value = 0;
-    value = acesInHand(playerCards);
-    if (value == 0) {
-      playerScore += playerC.value;
+    s = playerScore + playerC.value;
+    // render();
+    if (playerCards[0].c == "A" || playerCards[1].c == "A") {
+      if (s > 21) {
+        if (playerCards[0].c == "A" && playerCards[1].c == "A") {
+          s = s - 10;
+          playerScore = s;
+        } else if (playerC.card == "A") {
+          s = s - 10;
+          playerScore = s;
+        } else if (playerC.card != "A") {
+          if (playerCards[2].c === playerC.card) {
+            s = s - 10;
+            playerScore = s;
+          } else {
+            playerScore = s;
+          }
+        } else if (playerCards[0].c == "A") {
+          s = s - 10;
+          playerScore = s;
+        } else if (playerCards[1].c == "A") {
+          s = s - 10;
+          playerScore = s;
+        } else {
+          playerScore = s;
+        }
+      }
+      else {
+        playerScore = s;
+      }
+    } else if (s > 21) {
+      if (acesInHand(playerCards)) {
+        if (playerC.card == "A") {
+          s = s - 10;
+          console.log(s);
+          playerScore = s;
+        } else {
+          playerScore = s;
+        }
+      } else {
+        playerScore = s;
+      }
     } else {
-      playerScore += value;
+      playerScore = s;
     }
     displayPlayerCards(playerC);
     compare();
@@ -323,14 +306,52 @@ function standButton() {
     faceUpCard();
     while (dealerScore <= 21) {
       // Add Card
+      let s = 0;
       let dealerC = deck.pop();
       dealerCards.push({ c: dealerC.card, s: dealerC.suit });
-      var value = 0;
-      value = acesInHand(dealerCards);
-      if (value == 0) {
-        dealerScore += dealerC.value;
+      s = dealerScore + dealerC.value;
+      if (dealerCards[0].c == "A" || dealerCards[1].c == "A") {
+        if (s > 21) {
+          if (dealerCards[0].c == "A" && dealerCards[1].c == "A") {
+            s = s - 10;
+            dealerScore = s;
+          } else if (dealerC.card == "A") {
+            s = s - 10;
+            dealerScore = s;
+          } else if (dealerC.card != "A") {
+            if (dealerCards[2].c === dealerC.card) {
+              s = s - 10;
+              dealerScore = s;
+            } else {
+              dealerScore = s;
+            }
+          } else if (dealerScore[0].c == "A") {
+            s = s - 10;
+            dealerScore = s;
+          } else if (dealerCards[1].c == "A") {
+            s = s - 10;
+            dealerScore = s;
+          } else {
+            dealerScore = s;
+          }
+        }
+        else {
+          dealerScore = s;
+        }
+      } else if (s > 21) {
+        if (acesInHand(dealerCards)) {
+          if (dealerC.card == "A") {
+            s = s - 10;
+            console.log(s);
+            dealerScore = s;
+          } else {
+            dealerScore = s;
+          }
+        } else {
+          dealerScore = s;
+        }
       } else {
-        dealerScore += value;
+        dealerScore = s;
       }
       addOneDealerCard(dealerC);
       // Break Condition
@@ -344,6 +365,9 @@ function standButton() {
           losses += 1;
           break;
         }
+      } else if (dealerScore == playerScore) {
+        message = "It's Tie! Noone Won";
+        ties += 1;
       }
       render();
     }
@@ -386,18 +410,14 @@ function acesInHand(hand) {
     if (hand[i].c === "A") {
       acesCount += 1;
       console.log(acesCount);
-      if (acesCount > 1) {
-        score = 1;
-      }
-      if (acesCount == 1) {
-        score = 11;
-      }
-    } else {
-      score = 0;
     }
   }
-  console.log(score);
-  return score;
+
+  if (acesCount >= 1) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // compare() will be called to compare the playerScore against dealerScore
@@ -430,22 +450,3 @@ function faceUpCard() {
     dScore.innerHTML = dealerScore;
   }
 }
-
-
-// BET TABLE FUNCTIONS
-// function showBetAmount() {
-//   var count = betBtn.length;
-//   for(i = 0; i < count; i++) {
-//     betBtn[i].onclick = function(e) {
-//       let id = this.id;
-//       if (id == "btn1") {
-//         betAmount.innerHTML = "$10";
-//         totalAmount -= 10;
-//       } else if (id == "btn2") {
-//         betAmount.innerHTML = "$20";
-//         totalAmount -= 20;
-//       }
-//     }
-//     render();
-//   }
-// }
