@@ -264,7 +264,15 @@ function hitButton() {
         }
       }
       else {
-        playerScore = s;
+        if(playerC.card != 'A') {
+          if (playerCards[2].c === playerC.card) {
+            s = s - 10;
+            playerScore = s;
+          } else {
+            playerScore = s;
+          }
+        }
+        // playerScore = s;
       }
     } else if (s > 21) {
       if (acesInHand(playerCards)) {
