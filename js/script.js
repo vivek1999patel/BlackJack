@@ -257,9 +257,8 @@ function hitButton() {
         } else {
           playerScore = s;
         }
-      }
-      else {
-        if(playerC.card != 'A') {
+      } else {
+        if (playerC.card != "A") {
           if (playerCards[2].c === playerC.card) {
             s = s - 10;
             playerScore = s;
@@ -335,9 +334,8 @@ function standButton() {
           } else {
             dealerScore = s;
           }
-        }
-        else {
-          if(dealerC.card != 'A') {
+        } else {
+          if (dealerC.card != "A") {
             if (dealerCards[2].c === dealerC.card) {
               s = s - 10;
               dealerScore = s;
