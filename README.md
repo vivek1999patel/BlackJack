@@ -9,7 +9,7 @@
 #### I utilized HTML and CSS to build user interface to with the combination of color to make it user friendly with the thought of keeping it simple but decent. I also used JavaScript to implement game rules to make it like a real game.
 #### I implemented Model-View-Controller(MVC) to make it easy to navigate through the gameplay and render game rules logic in the web browser. 
 
-## Start Game:
+## Start Game View:
 
 ![Start Game Image](images/README/img1.png)
 
@@ -34,4 +34,16 @@
 
 ![Aces Image3](images/README/img5.png)
 
-#### The end result will look like the above image when the player will have the aces in hand.
+#### The end result will display player's hand and dealer's hand. Also, it will display score for both player and winner and number of Win/Loss/Tie for the player at the bottom.
+---
+
+## Getting Started:
+[Click To Start Game](https://vivek1999patel.github.io/BlackJack/)
+* Follow the instruction on the top! Have Fun!
+---
+
+## Next Steps:
+1. Add Bet options for the players to make some money.
+2. Add Audio and impove UI to make the game more user interactive.
+3. Make it responsive for the mobile users.
+4. Add option for user to use their name.
