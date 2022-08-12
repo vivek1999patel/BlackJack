@@ -210,7 +210,6 @@ function playAgain() {
 function resetBoard() {
   if (deck.length < 22) {
     message = "Not enough cards! Reset The Game";
-    // init();
   } else {
     message = "Welcome To BlackJack, Start Your Game!";
   }
@@ -218,7 +217,6 @@ function resetBoard() {
   dealerScore = 0;
   playerCards = [];
   dealerCards = [];
-  // message = "Welcome To BlackJack, Start Your Game!";
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
   rmCards.forEach(function (card) {
@@ -235,7 +233,6 @@ function hitButton() {
     var playerC = deck.pop();
     playerCards.push({ c: playerC.card, s: playerC.suit });
     s = playerScore + playerC.value;
-    // render();
     if (playerCards[0].c == "A" || playerCards[1].c == "A") {
       if (s > 21) {
         if (playerCards[0].c == "A" && playerCards[1].c == "A") {
