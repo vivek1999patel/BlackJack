@@ -47,3 +47,4 @@
 2. Add Audio and impove UI to make the game more user interactive.
 3. Make it responsive for the mobile users.
 4. Add option for user to use their name.
+5. Add copyrights footer.
