@@ -218,8 +218,6 @@ function resetBoard() {
   dealerScore = 0;
   playerCards = [];
   dealerCards = [];
-  score = 0;
-  acesCount = 0;
   // message = "Welcome To BlackJack, Start Your Game!";
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
@@ -278,7 +276,6 @@ function hitButton() {
       if (acesInHand(playerCards)) {
         if (playerC.card == "A") {
           s = s - 10;
-          console.log(s);
           playerScore = s;
         } else {
           playerScore = s;
@@ -300,7 +297,6 @@ function hitButton() {
 
 // standButton() will be called when player choose to stand in game
 function standButton() {
-  console.log(dealerScore);
   if (dealerScore > playerScore) {
     if (dealerScore <= 21) {
       faceUpCard();
@@ -350,7 +346,6 @@ function standButton() {
         if (acesInHand(dealerCards)) {
           if (dealerC.card == "A") {
             s = s - 10;
-            console.log(s);
             dealerScore = s;
           } else {
             dealerScore = s;
@@ -421,10 +416,8 @@ function resetGame() {
 function acesInHand(hand) {
   let acesCount = 0;
   for (i = 0; i < hand.length; i++) {
-    console.log(hand[i].c);
     if (hand[i].c === "A") {
       acesCount += 1;
-      console.log(acesCount);
     }
   }
 
