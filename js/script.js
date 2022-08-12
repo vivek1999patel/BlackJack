@@ -218,8 +218,6 @@ function resetBoard() {
   dealerScore = 0;
   playerCards = [];
   dealerCards = [];
-  score = 0;
-  acesCount = 0;
   // message = "Welcome To BlackJack, Start Your Game!";
   dScore.innerHTML = dealerScore;
   let rmCards = document.querySelectorAll(".card");
