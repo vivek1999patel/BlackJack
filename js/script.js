@@ -358,6 +358,7 @@ function standButton() {
       } else {
         dealerScore = s;
       }
+      render();
       addOneDealerCard(dealerC);
       // Break Condition
       if (dealerScore > playerScore) {
