@@ -337,7 +337,14 @@ function standButton() {
           }
         }
         else {
-          dealerScore = s;
+          if(dealerC.card != 'A') {
+            if (dealerCards[2].c === dealerC.card) {
+              s = s - 10;
+              dealerScore = s;
+            } else {
+              dealerScore = s;
+            }
+          }
         }
       } else if (s > 21) {
         if (acesInHand(dealerCards)) {
@@ -351,14 +358,7 @@ function standButton() {
           dealerScore = s;
         }
       } else {
-        if(dealerC.card != 'A') {
-          if (dealerCards[2].c === dealerC.card) {
-            s = s - 10;
-            dealerScore = s;
-          } else {
-            dealerScore = s;
-          }
-        }
+        dealerScore = s;
       }
       addOneDealerCard(dealerC);
       // Break Condition
