@@ -1,15 +1,15 @@
 # BlackJack - The Cards Game
 
-### Overview
+## Overview
 ---
 #### BlackJack is a most popular and widely played casino banking game in the world. It uses decks of 52 cards and descends from a global family of casino banking games known as Twenty-One. BlackJack Players do not compete against each other. The game is comparing card game where each player competes against the dealer.
 
-### Technologies
+## Technologies
 ---
 #### I utilized HTML and CSS to build user interface to with the combination of color to make it user friendly with the thought of keeping it simple but decent. I also used JavaScript to implement game rules to make it like a real game.
 #### I implemented Model-View-Controller(MVC) to make it easy to navigate through the gameplay and render game rules logic in the web browser. 
 
-### Start Game:
+## Start Game:
 
 ![Start Game Image](images/README/img1.png)
 
@@ -20,3 +20,18 @@
 #### Once the cards will be dealed to player and dealer, player will choose to hit or stand according to the points player have from the first two cards.
 * If player will have less than 21 points then player can choose to hit and continue to get more cards to go closer to 21 points.
 * If player will choose to stand, dealer's second card will be faced up and will be dealed with more cards to go closer to 21 points or more than player's points to win the game.
+---
+
+## Decide Aces Value:
+
+![Aces Image1](images/README/img3.png)
+
+#### Above image shows that the cards are dealed to player and dealer but the player has one ace in the hand, in situations like this, player can decide to have value 11 or 1 for the aces in hand to keep it below 21.
+
+![Aces Image2](images/README/img4.png)
+
+#### When player choose to hit and if the player's points are above 21, the value of aces in hand will be considered 1 instead of 11.
+
+![Aces Image3](images/README/img5.png)
+
+#### The end result will look like the above image when the player will have the aces in hand.
